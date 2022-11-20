@@ -32,19 +32,6 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-private handleError(error: HttpErrorResponse): any {
-    if (error.error instanceof ErrorEvent) {
-    console.error('Some error occurred:', error.error.message);
-    } else {
-    console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
-    }
-  return throwError(() => {
-    new Error('Something bad happened; please try again later.')
-  });
-}
-
   // retrieve all movies
   getAllMovies(): Observable<any> {
     return this.http.get<any>(apiUrl + 'movies', {headers: new HttpHeaders(
@@ -152,6 +139,19 @@ private handleError(error: HttpErrorResponse): any {
           })
         }).pipe(map(this.extractResponseData),
           catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse): any {
+    if (error.error instanceof ErrorEvent) {
+    console.error('Some error occurred:', error.error.message);
+    } else {
+    console.error(
+        `Error Status code ${error.status}, ` +
+        `Error body is: ${error.error}`);
+    }
+  return throwError(() => {
+    new Error('Something bad happened; please try again later.')
+  });
   }
 
   // Non-typed response extraction
