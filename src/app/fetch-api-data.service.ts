@@ -25,14 +25,14 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-  // user login
+  // sets user and token at login
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
   }
 
-  // retrieve all movies
+  // retrieves all movies
   getAllMovies(): Observable<any> {
     return this.http.get<any>(apiUrl + 'movies', {headers: new HttpHeaders(
       {
@@ -43,7 +43,7 @@ export class FetchApiDataService {
     );
   }
 
-  // retrieve info for one movie
+  // retrieves info for one movie
   getOneMovie(Title: string): Observable<any> {
     return this.http.get<any>(apiUrl + `movies/${Title}`, {
       headers: new HttpHeaders({
@@ -54,7 +54,8 @@ export class FetchApiDataService {
         catchError(this.handleError));
   }
 
-  // retrieve info on a director
+
+  // retrieves info for a director
   getDirector(Director: string): Observable<any> {
     return this.http.get<any>(apiUrl + `movies/directors/${Director}`, {
       headers: new HttpHeaders({
@@ -64,7 +65,7 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // retrieve info on a genre
+  // retrieves info for a genre
   getGenre(Genre: string): Observable<any> {
     return this.http.get<any>(apiUrl + `movies/genre/${Genre}`, {
       headers: new HttpHeaders({
@@ -74,7 +75,7 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // retrieve user profile information
+  // retrieves user info or error if request failed
   getUser(): Observable<any> {
     return this.http.get<any>(apiUrl + `users/${userName}`, {
       headers: new HttpHeaders({
@@ -84,10 +85,15 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // update user profile information
+  // retrieves updated user info
   editUser(updatedUser: any): Observable<any> {
     return this.http.put<any>(apiUrl + `users/${userName}`,
-      { updatedUser }, {
+      {
+        Username: updatedUser.Username,
+        Password: updatedUser.Password,
+        Email: updatedUser.Email,
+        Birthday: updatedUser.Birthday
+      }, {
         headers: new HttpHeaders(
           {
             Authorization: 'Bearer ' + token,
@@ -96,18 +102,20 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // delete user profile
+  // deletes user profile from database
   deleteUser(): Observable<any> {
-    return this.http.delete(apiUrl + `users/${userName}`,
+    const token = localStorage.getItem('token');
+    return this.http.delete<any>(apiUrl + `users/${userName}`,
       {
         headers: new HttpHeaders(
           {
             Authorization: 'Bearer ' + token,
           })
-        }).pipe(catchError(this.handleError));
+        }).pipe(map(this.extractResponseData),
+          catchError(this.handleError));
   }
 
-  // retrieve one movie from favorite movie's list
+  // retrieves info for favorite movies
   getFavMovies(): Observable<any> {
     return this.http.get<any>(apiUrl + `/users/${userName}/movies`, {
       headers: new HttpHeaders({
@@ -117,7 +125,7 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // add one movie to favorite movie's list
+  // updated user info with favorite movie added
   addFav(MovieID: string): Observable<any> {
     return this.http.post<any>(apiUrl + `users/${userName}/movies/${MovieID}`,
       { FavoriteMovies: MovieID }, {
@@ -129,7 +137,7 @@ export class FetchApiDataService {
           catchError(this.handleError));
   }
 
-  // remove a movie from favorite movie's list
+  // updated user info with movie deleted from favorites
   deleteFav(MovieID: string): Observable<any> {
     return this.http.delete<any>(apiUrl + `users/${userName}/movies/${MovieID}`,
       {
@@ -141,6 +149,7 @@ export class FetchApiDataService {
           catchError(this.handleError));
   }
 
+  // handles an error with any http requests
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);

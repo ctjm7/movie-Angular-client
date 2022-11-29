@@ -1,27 +1,29 @@
-# MovieAngularClient
+# myFlix!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
+## Description
+This is a client-side application using Angular. It is based on an existing server-side code that was created using a REST API and database.
 
-## Development server
+## Purpose of the App
+This app is was developed to be introduced to Angular while recreating a client side application that was previously done using React. This is to allow learning Angular in an environment that I am already familiar. This application allows users to view a list of movies. The information provided is a movie description, genre details, and director information. The user can create a profile, update their information and add movies to a favorites list.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Key Features
+* Displays a welcome view where users can either log in or register an
+account.
+* Once authenticated, the user is directed to the movies view.
+* Upon clicking on a particular movie, users are taken to a single movie view, where additional movie details are displayed. The single movie view contains the following additional features:
+  * A button that when clicked takes a user to the director view, where details about the director of that particular movie are displayed.
+  * A button that when clicked takes a user to the genre view, where details about that particular genre of the movie are displayed.
 
-## Code scaffolding
+## User Stories
+* As a user, I want to be able to receive information on movies, directors, and genres so that I can learn more about movies I’ve watched or am interested in.
+* As a user, I want to be able to create a profile so I can save data about my favorite movies.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tech Used
+Angular, Node.js, Angular Material, CSS, HTML, JavaScript, TypeScript, Typedoc and JSDoc
 
-## Build
+## Setting up your environment
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`
+Run `ng generate component component-name` to generate a new component
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Dependencies
+```
