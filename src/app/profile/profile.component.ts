@@ -28,7 +28,10 @@ export class ProfileComponent implements OnInit{
     this.getUserInfo();
   }
 
-  // retrieves user info
+  /**
+   * retrieves user info
+   * @returns user information as an object and set favorite movies array to a variable
+   */
   getUserInfo(): void {
     this.fetchApiData.getUser().subscribe((response) => {
       console.log(response);
@@ -37,7 +40,9 @@ export class ProfileComponent implements OnInit{
     });
   }
 
-  // deletes user profile from database and routes to welcome page
+  /**
+   * deletes user profile from database and routes to welcome page
+   */
   deleteUserProfile(): void {
     if (confirm('Are you sure you want to delete your profile?')) {
       this.router.navigate(['welcome']).then(() => {
@@ -51,7 +56,10 @@ export class ProfileComponent implements OnInit{
     }
   }
 
-  // updates user profile information and resets user in local storage
+  /**
+   * updates user profile information and resets user in local storage
+   * @returns updated user profile info as an object
+   */
   updateUserProfile(): void {
     this.fetchApiData.editUser(this.updatedUser).subscribe((response) => {
       console.log(response);

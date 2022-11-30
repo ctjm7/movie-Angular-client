@@ -22,8 +22,34 @@ account.
 Angular, Node.js, Angular Material, CSS, HTML, JavaScript, TypeScript, Typedoc and JSDoc
 
 ## Setting up your environment
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`
-Run `ng generate component component-name` to generate a new component
+*** Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`
+*** Run `ng generate component component-name` to generate a new component
 
 ## Dependencies
-```
+```"@angular/animations": "^15.0.0",
+    "@angular/cdk": "^15.0.0",
+    "@angular/common": "^15.0.0",
+    "@angular/compiler": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@angular/forms": "^15.0.0",
+    "@angular/material": "^15.0.0",
+    "@angular/platform-browser": "^15.0.0",
+    "@angular/platform-browser-dynamic": "^15.0.0",
+    "@angular/router": "^15.0.0",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.12.0"
+
+  "devDependencies":
+    "@angular-devkit/build-angular": "^15.0.0",
+    "@angular/cli": "~15.0.0",
+    "@angular/compiler-cli": "^15.0.0",
+    "@types/jasmine": "~4.3.0",
+    "jasmine-core": "~4.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "typedoc": "^0.23.21",
+    "typescript": "~4.8.2"

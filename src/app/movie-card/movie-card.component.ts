@@ -26,6 +26,11 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * retrieves all movies from api endpoint
+   * @returns array of all movies each as an object
+   * @function getMovies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
@@ -34,7 +39,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // This is the function that will open the dialog when the director button is clicked
+  /**
+   * opens the dialog when the director button is clicked
+   * @param {string} name
+   * @param {string} bio
+   * @param {number} birth
+   */
   openDirectorDialog(name: string, bio: string, birth: number): void {
     this.dialog.open(DirectorComponent, {
       width: '500px',
@@ -46,7 +56,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // opens dialog and gives genre name and description
+  /**
+   * opens dialog and gives genre name and description
+   * @param {string} name
+   * @param {string} desc
+   */
   openGenreDialog(name: string, desc: string): void {
     this.dialog.open(GenreComponent, {
       width: '500px',
@@ -57,7 +71,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-    // opens dialog and gives movie title and description
+  /**
+   * opens dialog and gives movie title and description
+   * @param {string} title
+   * @param {string} desc
+   */
     openSynopsisDialog(title: string, desc: string): void {
       this.dialog.open(SynopsisComponent, {
         width: '500px',
@@ -68,7 +86,11 @@ export class MovieCardComponent implements OnInit {
       });
     }
 
-  // adds movie to favorites list and changes icon color to red
+  /**
+   * adds movie to favorites list and changes icon color to red for favorite
+   * @param {string} id
+   * @param {number} index
+   */
   addFavoriteMovie(id: string, index: number): void {
     this.fetchApiData.addFav(id).subscribe((response: any) => {
       this.isFavorite = index;
